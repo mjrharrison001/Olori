@@ -10,13 +10,15 @@ var appRoutes             = require('./routes/app');
 var poloniexRoutes        = require('./routes/poloniex');
 var poloniexMarketRoutes  = require('./routes/poloniexmarket');
 var bittrexRoutes         = require('./routes/bittrex');
+var userRoutes           = require('./routes/user');
+var adminRoutes           = require('./routes/admin');
 
 var app = express();
 
 /**
 * connect to MongoDB
 **/
-const uristring = process.env.MONGODB_URI;
+const uristring = process.env.MONGODB_URI || 'mongodb://heroku_3j5k2gf4:3086spst1ba0gbrfgslerpmjlk@ds133162.mlab.com:33162/heroku_3j5k2gf4';
 mongoose.connect(uristring, function (err, db) {
   if (err) {
     console.log ('ERROR connecting to: ' + uristring + '. ' + err);
@@ -38,15 +40,18 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.header('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
+    res.setHeader('content-type', 'application/json');
     next();
 });
 
 app.use('/poloniex/market', poloniexMarketRoutes);
 app.use('/poloniex', poloniexRoutes);
 app.use('/bittrex', bittrexRoutes);
+app.use('/admin', adminRoutes);
+app.use('/user', userRoutes);
 app.use('/', appRoutes);
 
 // catch 404 and forward to error handler

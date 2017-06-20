@@ -7,21 +7,54 @@
 import * as i0 from '@angular/core';
 import * as i1 from './app.module';
 import * as i2 from './app.component';
-import * as i3 from './app.component.ngfactory';
-import * as i4 from '@angular/common';
-import * as i5 from '@angular/platform-browser';
+import * as i3 from './server-info.component.ngfactory';
+import * as i4 from './server-update.component.ngfactory';
+import * as i5 from './auth/authentication.component.ngfactory';
+import * as i6 from './app.component.ngfactory';
+import * as i7 from '@angular/common';
+import * as i8 from '@angular/platform-browser';
+import * as i9 from '@angular/forms';
+import * as i10 from '@angular/http';
+import * as i11 from '@angular/router';
+import * as i12 from './auth/auth.service';
+import * as i13 from './server.service';
+import * as i14 from './server-info.component';
+import * as i15 from './server-update.component';
+import * as i16 from './auth/authentication.component';
 export var AppModuleNgFactory = i0.ɵcmf(i1.AppModule, [i2.AppComponent], function (_l) {
-    return i0.ɵmod([i0.ɵmpd(512, i0.ComponentFactoryResolver, i0.ɵCodegenComponentFactoryResolver, [[8, [i3.AppComponentNgFactory]], [3, i0.ComponentFactoryResolver], i0.NgModuleRef]),
-        i0.ɵmpd(5120, i0.LOCALE_ID, i0.ɵm, [[3, i0.LOCALE_ID]]), i0.ɵmpd(4608, i4.NgLocalization, i4.NgLocaleLocalization, [i0.LOCALE_ID]), i0.ɵmpd(4608, i0.Compiler, i0.Compiler, []), i0.ɵmpd(5120, i0.APP_ID, i0.ɵf, []), i0.ɵmpd(5120, i0.IterableDiffers, i0.ɵk, []), i0.ɵmpd(5120, i0.KeyValueDiffers, i0.ɵl, []), i0.ɵmpd(4608, i5.DomSanitizer, i5.ɵe, [i5.DOCUMENT]),
-        i0.ɵmpd(6144, i0.Sanitizer, null, [i5.DomSanitizer]), i0.ɵmpd(4608, i5.HAMMER_GESTURE_CONFIG, i5.HammerGestureConfig, []), i0.ɵmpd(5120, i5.EVENT_MANAGER_PLUGINS, function (p0_0, p1_0, p2_0, p2_1) {
-            return [new i5.ɵDomEventsPlugin(p0_0), new i5.ɵKeyEventsPlugin(p1_0),
-                new i5.ɵHammerGesturesPlugin(p2_0, p2_1)];
-        }, [i5.DOCUMENT, i5.DOCUMENT, i5.DOCUMENT, i5.HAMMER_GESTURE_CONFIG]), i0.ɵmpd(4608, i5.EventManager, i5.EventManager, [i5.EVENT_MANAGER_PLUGINS, i0.NgZone]),
-        i0.ɵmpd(135680, i5.ɵDomSharedStylesHost, i5.ɵDomSharedStylesHost, [i5.DOCUMENT]),
-        i0.ɵmpd(4608, i5.ɵDomRendererFactory2, i5.ɵDomRendererFactory2, [i5.EventManager,
-            i5.ɵDomSharedStylesHost]), i0.ɵmpd(6144, i0.RendererFactory2, null, [i5.ɵDomRendererFactory2]), i0.ɵmpd(6144, i5.ɵSharedStylesHost, null, [i5.ɵDomSharedStylesHost]), i0.ɵmpd(4608, i0.Testability, i0.Testability, [i0.NgZone]), i0.ɵmpd(4608, i5.Meta, i5.Meta, [i5.DOCUMENT]), i0.ɵmpd(4608, i5.Title, i5.Title, [i5.DOCUMENT]), i0.ɵmpd(512, i4.CommonModule, i4.CommonModule, []), i0.ɵmpd(1024, i0.ErrorHandler, i5.ɵa, []), i0.ɵmpd(1024, i0.APP_INITIALIZER, function (p0_0, p0_1) {
-            return [i5.ɵc(p0_0, p0_1)];
-        }, [[2, i5.NgProbeToken], [2, i0.NgProbeToken]]), i0.ɵmpd(512, i0.ApplicationInitStatus, i0.ApplicationInitStatus, [[2, i0.APP_INITIALIZER]]), i0.ɵmpd(131584, i0.ɵe, i0.ɵe, [i0.NgZone, i0.ɵConsole, i0.Injector, i0.ErrorHandler, i0.ComponentFactoryResolver,
+    return i0.ɵmod([i0.ɵmpd(512, i0.ComponentFactoryResolver, i0.ɵCodegenComponentFactoryResolver, [[8, [i3.ServerInfoComponentNgFactory, i4.ServerUpdateComponentNgFactory, i5.AuthenticationComponentNgFactory,
+                    i6.AppComponentNgFactory]], [3, i0.ComponentFactoryResolver], i0.NgModuleRef]),
+        i0.ɵmpd(5120, i0.LOCALE_ID, i0.ɵm, [[3, i0.LOCALE_ID]]), i0.ɵmpd(4608, i7.NgLocalization, i7.NgLocaleLocalization, [i0.LOCALE_ID]), i0.ɵmpd(5120, i0.APP_ID, i0.ɵf, []), i0.ɵmpd(5120, i0.IterableDiffers, i0.ɵk, []),
+        i0.ɵmpd(5120, i0.KeyValueDiffers, i0.ɵl, []), i0.ɵmpd(4608, i8.DomSanitizer, i8.ɵe, [i8.DOCUMENT]), i0.ɵmpd(6144, i0.Sanitizer, null, [i8.DomSanitizer]),
+        i0.ɵmpd(4608, i8.HAMMER_GESTURE_CONFIG, i8.HammerGestureConfig, []),
+        i0.ɵmpd(5120, i8.EVENT_MANAGER_PLUGINS, function (p0_0, p1_0, p2_0, p2_1) {
+            return [new i8.ɵDomEventsPlugin(p0_0), new i8.ɵKeyEventsPlugin(p1_0), new i8.ɵHammerGesturesPlugin(p2_0, p2_1)];
+        }, [i8.DOCUMENT, i8.DOCUMENT, i8.DOCUMENT, i8.HAMMER_GESTURE_CONFIG]), i0.ɵmpd(4608, i8.EventManager, i8.EventManager, [i8.EVENT_MANAGER_PLUGINS, i0.NgZone]),
+        i0.ɵmpd(135680, i8.ɵDomSharedStylesHost, i8.ɵDomSharedStylesHost, [i8.DOCUMENT]),
+        i0.ɵmpd(4608, i8.ɵDomRendererFactory2, i8.ɵDomRendererFactory2, [i8.EventManager,
+            i8.ɵDomSharedStylesHost]), i0.ɵmpd(6144, i0.RendererFactory2, null, [i8.ɵDomRendererFactory2]), i0.ɵmpd(6144, i8.ɵSharedStylesHost, null, [i8.ɵDomSharedStylesHost]), i0.ɵmpd(4608, i0.Testability, i0.Testability, [i0.NgZone]), i0.ɵmpd(4608, i8.Meta, i8.Meta, [i8.DOCUMENT]), i0.ɵmpd(4608, i8.Title, i8.Title, [i8.DOCUMENT]), i0.ɵmpd(4608, i9.ɵi, i9.ɵi, []),
+        i0.ɵmpd(4608, i10.BrowserXhr, i10.BrowserXhr, []), i0.ɵmpd(4608, i10.ResponseOptions, i10.BaseResponseOptions, []), i0.ɵmpd(5120, i10.XSRFStrategy, i10.ɵb, []), i0.ɵmpd(4608, i10.XHRBackend, i10.XHRBackend, [i10.BrowserXhr,
+            i10.ResponseOptions, i10.XSRFStrategy]), i0.ɵmpd(4608, i10.RequestOptions, i10.BaseRequestOptions, []), i0.ɵmpd(5120, i10.Http, i10.ɵc, [i10.XHRBackend,
+            i10.RequestOptions]), i0.ɵmpd(4608, i9.FormBuilder, i9.FormBuilder, []),
+        i0.ɵmpd(5120, i11.ActivatedRoute, i11.ɵf, [i11.Router]), i0.ɵmpd(4608, i11.NoPreloading, i11.NoPreloading, []), i0.ɵmpd(6144, i11.PreloadingStrategy, null, [i11.NoPreloading]), i0.ɵmpd(135680, i11.RouterPreloader, i11.RouterPreloader, [i11.Router, i0.NgModuleFactoryLoader, i0.Compiler,
+            i0.Injector, i11.PreloadingStrategy]), i0.ɵmpd(4608, i11.PreloadAllModules, i11.PreloadAllModules, []), i0.ɵmpd(5120, i11.ROUTER_INITIALIZER, i11.ɵi, [i11.ɵg]), i0.ɵmpd(5120, i0.APP_BOOTSTRAP_LISTENER, function (p0_0) {
+            return [p0_0];
+        }, [i11.ROUTER_INITIALIZER]), i0.ɵmpd(4608, i12.AuthService, i12.AuthService, [i10.Http]), i0.ɵmpd(4608, i13.ServerService, i13.ServerService, [i10.Http]),
+        i0.ɵmpd(512, i7.CommonModule, i7.CommonModule, []), i0.ɵmpd(1024, i0.ErrorHandler, i8.ɵa, []), i0.ɵmpd(1024, i0.NgProbeToken, function () {
+            return [i11.ɵb()];
+        }, []), i0.ɵmpd(512, i11.ɵg, i11.ɵg, [i0.Injector]), i0.ɵmpd(1024, i0.APP_INITIALIZER, function (p0_0, p0_1, p1_0) {
+            return [i8.ɵc(p0_0, p0_1), i11.ɵh(p1_0)];
+        }, [[2, i8.NgProbeToken], [2, i0.NgProbeToken], i11.ɵg]), i0.ɵmpd(512, i0.ApplicationInitStatus, i0.ApplicationInitStatus, [[2, i0.APP_INITIALIZER]]), i0.ɵmpd(131584, i0.ɵe, i0.ɵe, [i0.NgZone, i0.ɵConsole, i0.Injector, i0.ErrorHandler, i0.ComponentFactoryResolver,
             i0.ApplicationInitStatus]), i0.ɵmpd(2048, i0.ApplicationRef, null, [i0.ɵe]), i0.ɵmpd(512, i0.ApplicationModule, i0.ApplicationModule, [i0.ApplicationRef]),
-        i0.ɵmpd(512, i5.BrowserModule, i5.BrowserModule, [[3, i5.BrowserModule]]), i0.ɵmpd(512, i1.AppModule, i1.AppModule, [])]);
+        i0.ɵmpd(512, i8.BrowserModule, i8.BrowserModule, [[3, i8.BrowserModule]]), i0.ɵmpd(512, i9.ɵbc, i9.ɵbc, []), i0.ɵmpd(512, i9.FormsModule, i9.FormsModule, []), i0.ɵmpd(1024, i11.ɵa, i11.ɵd, [[3, i11.Router]]), i0.ɵmpd(512, i11.UrlSerializer, i11.DefaultUrlSerializer, []), i0.ɵmpd(512, i11.ChildrenOutletContexts, i11.ChildrenOutletContexts, []),
+        i0.ɵmpd(256, i11.ROUTER_CONFIGURATION, {}, []), i0.ɵmpd(1024, i7.LocationStrategy, i11.ɵc, [i7.PlatformLocation, [2, i7.APP_BASE_HREF], i11.ROUTER_CONFIGURATION]),
+        i0.ɵmpd(512, i7.Location, i7.Location, [i7.LocationStrategy]), i0.ɵmpd(512, i0.Compiler, i0.Compiler, []), i0.ɵmpd(512, i0.NgModuleFactoryLoader, i0.SystemJsNgModuleLoader, [i0.Compiler, [2, i0.SystemJsNgModuleLoaderConfig]]), i0.ɵmpd(1024, i11.ROUTES, function () {
+            return [[{ path: '', redirectTo: '/auth', pathMatch: 'full' }, { path: 'app/info',
+                        component: i14.ServerInfoComponent, pathMatch: 'full' }, { path: 'app/update',
+                        component: i15.ServerUpdateComponent, pathMatch: 'full' }, { path: 'auth',
+                        component: i16.AuthenticationComponent, loadChildren: './auth/auth.module#AuthModule' }]];
+        }, []), i0.ɵmpd(1024, i11.Router, i11.ɵe, [i0.ApplicationRef, i11.UrlSerializer,
+            i11.ChildrenOutletContexts, i7.Location, i0.Injector, i0.NgModuleFactoryLoader,
+            i0.Compiler, i11.ROUTES, i11.ROUTER_CONFIGURATION, [2, i11.UrlHandlingStrategy],
+            [2, i11.RouteReuseStrategy]]), i0.ɵmpd(512, i11.RouterModule, i11.RouterModule, [[2, i11.ɵa], [2, i11.Router]]), i0.ɵmpd(512, i10.HttpModule, i10.HttpModule, []), i0.ɵmpd(512, i9.ReactiveFormsModule, i9.ReactiveFormsModule, []), i0.ɵmpd(512, i1.AppModule, i1.AppModule, [])]);
 });

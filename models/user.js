@@ -9,7 +9,11 @@ var schema = new Schema({
   tokenAddress: {type: String, required: false},
   aliasName: {type: String, required: false},
   aliasDescripton: {type: String, required: false},
-  keys: [{type: String, required: false}]
+  keys: [{
+    public: { type: String, required: false },
+    private: { type: String, required: false }
+  }],
+  lastActive: { type: Date, default: Date.now }
 });
 
 schema.plugin(mongooseUV);

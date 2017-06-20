@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-var autobahn = require('autobahn');const wsuri = "wss://api.poloniex.com";
+var autobahn = require('autobahn');
+const wsuri = "wss://api.poloniex.com";
 var connection = new autobahn.Connection({
   url: wsuri,
   realm: "realm1"

@@ -1,0 +1,41 @@
+<div class="panel panel-info">
+  <div class="panel-body">
+    Total number of users signed up.
+  </div>
+  <div class="panel-footer" *ngIf="server">{{ server.numberOfUsers }}</div>
+  <div class="panel-footer" *ngIf="!server">Must log in.</div>
+</div>
+
+<div class="panel panel-info">
+  <div class="panel-body">
+    Total number of keys added.
+  </div>
+  <div class="panel-footer" *ngIf="server">{{ server.numberOfKeys }}</div>
+  <div class="panel-footer" *ngIf="!server">Must log in.</div>
+</div>
+
+<div class="panel panel-info">
+  <div class="panel-body">
+    Total number of active keys.
+    <br><i>An key is active if the user has used the app in the past 2 weeks.
+    Keys are re-instated as active if the user logs in.</i>
+  </div>
+  <div class="panel-footer" *ngIf="server">{{ server.numberOfActiveUsers }}</div>
+  <div class="panel-footer" *ngIf="!server">Must log in.</div>
+</div>
+
+<div class="panel panel-info">
+  <div class="panel-body">
+    Interval of time rankings are re-calculated for all active keys.
+  </div>
+  <div class="panel-footer" *ngIf="server">{{ server.updateTimer }}</div>
+  <div class="panel-footer" *ngIf="!server">Must log in.</div>
+</div>
+
+<div class="panel panel-info">
+  <div class="panel-body">
+    Date the last successful rakings were calculated.
+  </div>
+  <div class="panel-footer" *ngIf="server">{{ server.lastSuccessfulUpdate }}</div>
+  <div class="panel-footer" *ngIf="!server">Must log in.</div>
+</div>

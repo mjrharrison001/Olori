@@ -1,0 +1,13 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+<div class="form-group row">
+  <label for="interval" class="col-2 col-form-label">Interval</label>
+  <div class="col-10">
+    <input class="form-control" type="number" value="240" id="interval"
+    class="form-control"
+    name="interval"
+    required
+    formControlName="interval">
+  </div>
+</div>
+<button  type="submit" class="btn btn-primary">Update</button>
+</form>
