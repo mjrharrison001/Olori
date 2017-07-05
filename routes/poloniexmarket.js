@@ -9,12 +9,12 @@ var connection = new autobahn.Connection({
 });
 
 router.get('/open', function(req, res, next){
-  //connection.open();
+  connection.open();
   res.send("poloniex");
 });
 
 router.get('/close', function(req, res, next){
-  //connection.close();
+  connection.close();
   res.send("poloniex");
 });
 
