@@ -17,6 +17,8 @@ var schema = new Schema({
     public: { type: String, required: false },
     private: { type: String, required: false }
   }],
+  lastRealizedGainPoloniex: { type: Number, required: false },
+  lastRealizedGainBittrex: { type: Number, required: false },
   totalRealizedGainsDaily: [{
     value: {type: Number, required: false},
     date: {type: Date, default: Date.now}

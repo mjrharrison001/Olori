@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node ./bin/www",
     "build": "del-cli public/js/app && webpack --config webpack.config.dev.js --progress --profile --watch",
-    "build:prod": "del-cli public/js/app && ngc -p tsconfig.aot.json && ngc -p tsconfig.aot.json && webpack --config webpack.config.prod.js --progress --profile --bail && del-cli 'public/js/app/**/*.js' 'public/js/app/**/*.js.map' '!public/js/app/bundle.js' '!public/js/app/*.chunk.js' 'assets/app/**/*.ngfactory.ts' 'assets/app/**/*.shim.ts' 'assets/app/**/*.ngsummary.json' 'assets/app/**/*.ngstyle.ts'"
+    "build:prod": "del-cli public/js/app && ngc -p tsconfig.aot.json && ngc -p tsconfig.aot.json && webpack --config webpack.config.prod.js --progress --profile --bail && del-cli 'public/js/app/**/*.js' 'public/js/app/**/*.js.map' '!public/js/app/bundle.js' '!public/js/app/*.chunk.js' 'assets/app/**/*.ngfactory.ts' 'assets/app/**/*.shim.ts' 'assets/app/**/*.ngsummary.json' 'assets/app/**/*.ngstyle.ts'",
+    "start:dev": "SET NODE_ENV=dev && node ./bin/www",
+    "test": "mocha --timeout 10000"
   },
   "dependencies": {
     "@angular/animations": "^4.0.0",
@@ -24,6 +26,8 @@
     "autobahn": "^17.5.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "~1.15.2",
+    "chai": "^4.1.0",
+    "chai-http": "^3.0.0",
     "cookie-parser": "~1.4.3",
     "core-js": "^2.4.1",
     "crypto": "0.0.3",
@@ -35,10 +39,12 @@
     "https": "^1.0.0",
     "jsonwebtoken": "^7.4.1",
     "mathjs": "^3.14.2",
+    "mocha": "^3.4.2",
     "mongoose": "^4.10.6",
     "mongoose-unique-validator": "^1.0.5",
     "morgan": "~1.6.1",
     "node-cron": "^1.2.0",
+    "node.bittrex.api": "^0.3.2",
     "nonce": "^1.0.4",
     "plnx": "0.0.10",
     "python-shell": "^0.4.0",

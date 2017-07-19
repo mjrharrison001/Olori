@@ -7,6 +7,16 @@ var Server = require('../models/server');
 var Admin = require('../models/admin');
 var User = require('../models/user');
 var PoloniexHelper = require('./poloniexhelper.js');
+var BittrexHelper = require('./bittrexhelper.js');
+
+const oneYear = 1000*60*60*24*360;
+const oneMinute = 1000*60;
+
+// timers
+var dayTimer = 60 * 60 * 24;
+var threeHourTimer = new Date();
+var oneDayTimer = new Date();
+var oneWeekTimer = new Date();
 
 /**
 router.get('/updateServerParams', function (req, res, next) {
@@ -165,13 +175,17 @@ function stopCron(scheduledTask) {
   scheduledTask.stop();
 }
 
-// Update Poloniex realized gains (RG)
+// Update Poloniex & Bittrex realized gains (RG)
 function updateAllRealizedGains(interval){
-  console.log('task started: updating all users realized gains (Poloniex) ...');
+  console.log('task started: updating all users realized gains ...');
   User.find({}, function(err, users){
     var userMap = {};
     users.forEach(function(user){
+      PoloniexHelper.updateTradeHistoryPoloniex(user);
       PoloniexHelper.updateUserRealizedGainsPoloniex(user, interval);
+      BittrexHelper.updateTradeHistoryBittrex(user);
+      BittrexHelper.updateUserRealizedGainsBittrex(user, interval); //TODO
+      updateAllUsersRealizedGains(user, interval);
     });
   });
 }
@@ -181,5 +195,62 @@ function updateUnrealizedGains(){
 
 }
 
+function updateAllUsersRealizedGains(user, interval) {
+  var newTotalRealizedGains = 0;
+  if (typeof user.lastRealizedGainPoloniex != 'undefined' && isNumber(user.lastRealizedGainPoloniex)) {
+    newTotalRealizedGains += user.lastRealizedGainPoloniex;
+  }
+  if (typeof user.lastRealizedGainBittrex != 'undefined' && isNumber(user.lastRealizedGainBittrex)) {
+    newTotalRealizedGains += user.lastRealizedGainBittrex;
+  }
+  var newTotalRealizedGainsEntry = {
+    value: newTotalRealizedGains,
+    date: new Date()
+  };
+  if (user.totalRealizedGainsDaily.length == 0){
+    user.totalRealizedGainsDaily = newTotalRealizedGainsEntry;
+    user.totalRealizedGainsWeekly = newTotalRealizedGainsEntry;
+    user.totalRealizedGainsMonthly = newTotalRealizedGainsEntry;
+  } else {
+    // push to daily list over 24 hour period BUT re-write every 24 hour
+    if (dayTimer > 0 &&  user.totalRealizedGainsDaily.length < 2880) {
+      user.totalRealizedGainsDaily.push(newTotalRealizedGainsEntry);
+      dayTimer -= interval;
+    } else {
+      user.totalRealizedGainsDaily = newTotalRealizedGainsEntry;
+      dayTimer = 60 * 60 * 24; // reset timer
+    }
+    // push to weekly gains every 3 hours
+    var currentTime = new Date().getHours();
+    if ((threeHourTimer.getHours() + 3) < currentTime) { // + 3 <
+      threeHourTimer = new Date();
+      if (user.totalRealizedGainsWeekly.length > 56) {
+        // remove the oldest element
+        // only keep 1 week of database
+        user.totalRealizedGainsWeekly.shift();
+        user.totalRealizedGainsWeekly.push(newTotalRealizedGainsEntry);
+      } else {
+        user.totalRealizedGainsWeekly.push(newTotalRealizedGainsEntry);
+      }
+    }
+    // push to monthly gains every 24 hours
+    if ((oneWeekTimer.getHours() + 24) < currentTime) {
+      oneWeekTimer = new Date();
+      user.totalRealizedGainsMonthly.push(newTotalRealizedGainsEntry);
+    }
+  }
+  user.save(function(err, result){
+    if (err){
+      console.log('error while updating user realized gains');
+    } else {
+      console.log('Total RG calculated: ' + newTotalRealizedGains);
+    }
+  });
+}
+
+
+function isNumber(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
 
 module.exports = router;
